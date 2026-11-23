@@ -1,0 +1,40 @@
+/* ================================
+   QUARTO PAGE
+   ================================ */
+
+#quarto-content,
+main.content {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Keep some breathing room */
+main.content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* ================================
+   MODEL PERFORMANCE TABLE
+   ================================ */
+
+.model-performance {
+    width: 100%;
+    max-width: none;
+}
+
+.model-performance table {
+    width: 100%;
+    table-layout: auto;
+}
+
+.model-performance th,
+.model-performance td {
+    white-space: nowrap;
+}
+
+/* Give the algorithm names more room */
+.model-performance th:first-child,
+.model-performance td:first-child {
+    min-width: 130px;
+}
