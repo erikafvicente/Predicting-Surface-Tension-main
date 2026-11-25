@@ -200,3 +200,14 @@ Esta comprobación nos permite ver que esa ley es violada por todos los modelos 
 
 ## 5. Physics-Informed ML
 Vemos que si solo aplicamos los algoritmos de ML, no coseguiremos una consistenciafísica. Necesitamos añadir constraints físicos.
+Usaremos solo la separación de los datos de Family, y los dos algoritmos que serian MLP (el de PyTorch) y XGBoost. Cogeremos también solo las cofiguraciones que salieron como mejor para cada algoritmo.
+Lo que vamos a cambiar:
+- Forzaremos que con el aumento de Temperatura, la tensión superficial siempre debe disminuir.
+- Nos aseguraremos de que los modelos respeten el punto crítico añadiendo en el training puntos que se acerquen a la temperatura crítica.
+
+Para hacer esos cambios, lo que tendremos que hacer será:
+1. Activar funciones de monotonicidad en esos algoritmos en los cuales esa función existe, o cambiar de función como en el caso de GradientBoostingRegressor a HistGradientBoostingRegressor, o crear estrategias para forzar ese descenso con la temperatura.
+2. Añadir puntos con los valores de TC o muy cercanos a este (Tr = 0.99), y poner que el valor de ST es 0 en esos casos. No es real, pero ayuda al programa a entender la tónica.
+
+### ¿Qué vemos al aplicar esas restricciones en los algoritmos de ML?
+Si ponemos un peso alto en la colocación de las filas de valores de TC, se reducen las violaciones de la TC pero también aumenta el error del modelo.
